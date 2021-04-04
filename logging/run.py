@@ -10,6 +10,8 @@ import os
 import argparse
 import logging
 
+from logger import external_logger
+
 
 def five_log_levels():
     """Show 5 log levels: DEBUG(10), INFO(20), WARNING(30), ERROR(40), CRITICAL(50).
@@ -75,6 +77,42 @@ def use_format():
         datefmt='%Y/%m/%d %I:%M:%S'
     )
 
+    # logs
+    logging.debug("This is debug")
+    logging.info("This is info")
+    logging.warning("This is warning")
+    logging.error("This is error")
+
+def use_external_logger():
+    """Execute function defined at external module with logging.
+   
+   Printed Log:
+        WARNING:root:This is internal logger
+        WARNING:root:This is external logger
+    """
+    logging.warning("This is internal logger")
+    external_logger()  # logging.warning("This is external logger")
+
+def save_and_print_together():
+    """Set logger to save log and print it together.
+        
+    References:
+        - StackOverflow: https://bit.ly/3wjvaXs
+
+    Printed Log:
+        This is debug
+        This is info
+        This is warning
+        This is error
+
+    Saved Log(save_and_print.log):
+        DEBUG:root:This is debug
+        INFO:root:This is info
+        WARNING:root:This is warning
+        ERROR:root:This is error
+    """
+    logging.basicConfig(filename='./logs/save_and_print.log', level=logging.DEBUG)
+    logging.getLogger().addHandler(logging.StreamHandler())
     # logs
     logging.debug("This is debug")
     logging.info("This is info")
