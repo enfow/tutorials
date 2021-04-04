@@ -10,6 +10,8 @@ import os
 import argparse
 import logging
 
+from logger import external_logger
+
 
 def five_log_levels():
     """Show 5 log levels: DEBUG(10), INFO(20), WARNING(30), ERROR(40), CRITICAL(50).
@@ -81,6 +83,15 @@ def use_format():
     logging.warning("This is warning")
     logging.error("This is error")
 
+def use_external_logger():
+    """Execute function defined at external module with logging.
+   
+   Printed Log:
+        WARNING:root:This is internal logger
+        WARNING:root:This is external logger
+    """
+    logging.warning("This is internal logger")
+    external_logger()  # logging.warning("This is external logger")
 
 
 # parser
