@@ -93,6 +93,33 @@ def use_external_logger():
     logging.warning("This is internal logger")
     external_logger()  # logging.warning("This is external logger")
 
+def save_and_print_together():
+    """Set logger to save log and print it together.
+        
+    References:
+        - StackOverflow: https://bit.ly/3wjvaXs
+
+    Printed Log:
+        This is debug
+        This is info
+        This is warning
+        This is error
+
+    Saved Log(save_and_print.log):
+        DEBUG:root:This is debug
+        INFO:root:This is info
+        WARNING:root:This is warning
+        ERROR:root:This is error
+    """
+    logging.basicConfig(filename='./logs/save_and_print.log', level=logging.DEBUG)
+    logging.getLogger().addHandler(logging.StreamHandler())
+    # logs
+    logging.debug("This is debug")
+    logging.info("This is info")
+    logging.warning("This is warning")
+    logging.error("This is error")
+
+
 
 # parser
 parser = argparse.ArgumentParser()
