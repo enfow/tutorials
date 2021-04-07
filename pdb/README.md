@@ -1,29 +1,35 @@
 # Python Debugger: pdb
 
 ## Useful Command for pdb Prompter
-    - s(tep): go to next line
-    - n(ext): go to next line(same as step)
-    - c(ontinue): pass all lines until the breakpoint
-    - r(eturn): pass all lines until the return of the current function
-    - where : show current line
 
-    - l(ist): show source code of current function
-    - source [function_name]: show source code of the input function_name
+### Basic Commands
 
-    - up: move the current frame count level up in the stack trace
-    - down: move the current frame count level down in the stack trace
+- s(tep): go to next line
+- n(ext): go to next line(same as step)
+- c(ontinue): pass all lines until the breakpoint
+- r(eturn): pass all lines until the return of the current function
+- where : show current line
+- l(ist): show source code of current function
+- source [function_name]: show source code of the input function_name
 
-    - break [statement]: show breakpoints and it's number in the statement
-    - disable [breakpoint_number]: disable certain breakpoint
-    - enable [breakpoint_number]: enable certain breakpoint
+### Source Code Level
 
-    - p [expression]: evaluate the expression with the current context
+- up: move the current frame count level up in the stack trace
+- down: move the current frame count level down in the stack trace
+
+### Break
+
+- break [statement]: show breakpoints and it's number in the statement
+- disable [breakpoint_number]: disable certain breakpoint
+- enable [breakpoint_number]: enable certain breakpoint
+
+- p [expression]: evaluate the expression with the current context
 
 ## Examples: pdb Prompter
 
 ### step(s), next(n), where, list
 
-- Example with $ `python run.py`
+- Example with `$ python run.py`
 
 ```
 > <string>(1)<module>()
@@ -62,7 +68,7 @@ Press ENTER or type command to continue
 
 ### source, return
 
-- Example with $ `python run.py`
+- Example with `$ python run.py`
 
 ```
 > <string>(1)<module>()
@@ -91,7 +97,7 @@ Press ENTER or type command to continue
 
 ### p, print()
 
-- Example with $ `python run_breakpoint_example.py`
+- Example with `$ python run_breakpoint_example.py`
 
 ```
 Press ENTER or type command to continue
