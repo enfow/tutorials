@@ -4,5 +4,7 @@ code examples for python
 
 ## Contents
 
-### 1. loggings
+### 1. python logger: logging
+
+### 2. Python Debugger: pdb
 
