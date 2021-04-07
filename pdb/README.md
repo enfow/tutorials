@@ -11,6 +11,7 @@
 - where : show current line
 - l(ist): show source code of current function
 - source [function_name]: show source code of the input function_name
+- p [expression]: evaluate the expression with the current context
 
 ### Source Code Level
 
@@ -22,8 +23,6 @@
 - break [statement]: show breakpoints and it's number in the statement
 - disable [breakpoint_number]: disable certain breakpoint
 - enable [breakpoint_number]: enable certain breakpoint
-
-- p [expression]: evaluate the expression with the current context
 
 ## Examples: pdb Prompter
 
