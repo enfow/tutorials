@@ -10,7 +10,7 @@ import os
 import argparse
 import logging
 
-from logger import external_logger
+from external_logger import external_logger
 
 
 def five_log_levels():
