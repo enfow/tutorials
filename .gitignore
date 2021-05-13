@@ -3,3 +3,11 @@
 __pycache__
 
 *.log
+.DS_Store
+.ipynb_checkpoints
+
+MNIST/
+
+checkpoints/
+lightning_logs/
+save/
