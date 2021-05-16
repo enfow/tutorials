@@ -1,14 +1,12 @@
-# python_tutorials
-
-code examples for python
+# Tutorials
 
 ## Contents
 
-### 1. python logger: logging
+### 1. Python logger: logging
 
 ### 2. Python Debugger: pdb
 
 ### 3. Pytorch Framework: Pytorch Lightning
 
-### 4. docker
+### 4. Docker
 
