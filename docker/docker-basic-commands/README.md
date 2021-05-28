@@ -110,6 +110,24 @@ $ docker rm <container ID/NAME>
 $ docker rm `docker ps -a -q`
 ```
 
+## docker rmi
+
+- [docker rmi](<https://docs.docker.com/engine/reference/commandline/rmi/>)
+- Image를 삭제하는 명령어
+
+```bash
+$ docker rmi <image ID/NAME>
+```
+
+## docker commit
+
+- [docker commit](<https://docs.docker.com/engine/reference/commandline/commit/>)
+- Container를 바탕으로 새로운 Image를 생성하는 명령어
+
+```bash
+$ docker commit <Container ID/NAME> <IMAGE NAME>
+```
+
 ## docker ps
 
 ```bash
