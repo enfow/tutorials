@@ -7,9 +7,7 @@
 - [LINK](<https://github.com/enfow/tutorials/tree/master/docker/1.docker-basic-commands>)
 - Docker의 기본적인 명령어들
 
-### 2. Create Images
-
-- [LINK](<https://github.com/enfow/tutorials/tree/master/docker/2.create-image>)
+### 2. [Create Images](<./2.create-image>)
 - 새로운 Docker Image를 생성하는 방법
 
 ### 3. Run NodeJS application with Docker
