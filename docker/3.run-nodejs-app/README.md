@@ -53,7 +53,7 @@ $ curl -X GET http://localhost:3000
 ## 4. Update Application without re-Build
 
 - [Docker Run: VOLUME[Shared Filesystems]](<https://docs.docker.com/engine/reference/run/#volume-shared-filesystems>)
-- Image Build시 적용되는 COPY가 아니라 Container 생성 시 파일에 접근하도록 하는 방법도 있다.
+- Container 생성 시 HOST의 파일에 접근하도록 하는 방법도 있다.
 - 이렇게 하면 Source Code가 바뀔 때마다 매번 Image를 build 할 필요가 없다.
 
 ```bash
