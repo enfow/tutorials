@@ -1,6 +1,6 @@
 # Docker Compose Example
 
-- Docker Compose는 여러 개의 Docker Container들을 생성하고 실행하는 것을 목적으로 사용합니다.
+- Docker Compose는 여러 개의 Docker Container들을 생성하고 실행하는 것을 목적으로 사용한다.
 - 실행하고자 하는 Docker Container 각각을 Serveice라고 하며, 개별 Service의 특성은 `docker-compose.yml` 파일로 정의한다.
 - [Docker Compose - Getting Started](<https://docs.docker.com/compose/gettingstarted/>)
 - [Overview of docker-compose CLI](<https://docs.docker.com/compose/reference/>)
