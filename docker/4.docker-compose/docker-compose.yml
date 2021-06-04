@@ -1,0 +1,16 @@
+# version of docker-compose
+version: "3"
+services:
+  # First Service: redis-server
+  redis-server:
+    image: "redis"  # run with Image name
+
+  # Second Service: node-app
+  node-app:
+    build: .  # build image with Dockerfile on current dir
+    ports:    # port 5000 -> 8080
+      - "5000:8080"
+    volumes:  # Volume
+      - .:/code
+    environment:  # Environment variables
+      ENV_V: node
