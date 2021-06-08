@@ -12,3 +12,5 @@
 
 ### [5. NodeJS Web Framework: ExpressJS](<./expressjs>)
 
+### [6. Python Web Framework: Flask](<./flask>)
+
