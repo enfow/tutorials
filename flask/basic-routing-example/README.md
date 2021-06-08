@@ -85,7 +85,7 @@ def get_user_id(user_id):
 ### Request & Response
 
 ```html
-# Request to: localhost:8080/user/enfow
+// Request to: localhost:8080/user/enfow
 
 HTTP/1.0 200 OK
 Content-Length: 33
@@ -96,7 +96,7 @@ Server: Werkzeug/2.0.1 Python/3.8.2
 <h1> The User name is enfow </h1>
 ```
 
-```bash
+```html
 # Request to: localhost:8080/id/10
 
 HTTP/1.0 200 OK
@@ -122,8 +122,8 @@ def get_json():
 
 ### Request & Response
 
-```bash
-# Request to: localhost:8080/json
+```html
+// Request to: localhost:8080/json
 
 HTTP/1.0 200 OK
 Content-Length: 35
