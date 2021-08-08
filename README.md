@@ -14,3 +14,4 @@
 
 ### [6. Python Web Framework: Flask](<./flask>)
 
+### [7. Python Examples](<./python>)
