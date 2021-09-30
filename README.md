@@ -15,3 +15,5 @@
 ### [6. Python Web Framework: Flask](<./flask>)
 
 ### [7. Python Examples](<./python>)
+
+### [8. Deep Learning Basic](<./deeplearning_basic>)
