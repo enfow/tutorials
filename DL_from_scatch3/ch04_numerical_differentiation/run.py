@@ -43,10 +43,12 @@ if __name__ == "__main__":
     forward_diff = forward_divided_difference(func=quadratic, x=1)
 
     print(f"y=x^2 at 1 | Answer: {answer} | Centered Divided: {centerd_diff} | Forward Divided: {forward_diff}")
+	# y=x^2 at 1 | Answer: 2.0 | Centered Divided: 2.000000000002 | Forward Divided: 2.0000009999243673
 
     answer = math.e  # y = x^2 's differentiation is always 2.
     centerd_diff = centered_divided_difference(func=exponential, x=1)
     forward_diff = forward_divided_difference(func=exponential, x=1)
 
     print(f"y=e^x at 1 | Answer: {answer} | Centered Divided: {centerd_diff} | Forward Divided: {forward_diff}")
+	# y=e^x at 1 | Answer: 2.718281828459045 | Centered Divided: 2.718281828295588 | Forward Divided: 2.7182831874306146
 
