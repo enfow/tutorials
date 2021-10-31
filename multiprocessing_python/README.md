@@ -2,7 +2,8 @@
 
 ## Contents
 
-1. compare single and multi process
+1. Compare single and multi process
+1. Start method: Spawn and Fork 
 
 ## Setup
 
