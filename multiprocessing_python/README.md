@@ -74,7 +74,7 @@ The start method is spawn
 Average execution time:    2.02362 sec
 ```
 
-- As you can see, all lines of the script runs again with `spawn` option(line 25).
+- As you can see, all lines of the script runs many times with `spawn` option(line 25).
 - So creating and running multiprocesses with `spawn` should be inside of the `if __name__ == "__main__"` clause. Otherwise, python raise the error as follows.
 
 ```bash
@@ -105,11 +105,13 @@ RuntimeError: context has already been set
 
 ### tips:
 
-- how to select the start method: `mp.set_start_method()`
+- How to select the start method: `mp.set_start_method()`
 
 ```python
 mp.set_start_method('spawn')
 ```
+
+- `mp.set_start_method()` should net be used more than once in the program.
 
 ## References
 
