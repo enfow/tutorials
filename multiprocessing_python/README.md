@@ -14,7 +14,7 @@
 
 ```bash
 [example]
-$ python 01_compare_single_and_multi.py --n_iters 1000 10000--n_tasks 1 2 3 4
+$ python 01_compare_single_and_multi.py --n_iters 1000 10000 --n_tasks 1 2 3 4
 ```
 
 ## 2. start method: spawn and fork
@@ -39,8 +39,8 @@ $ python 02_spawn_and_fork.py -- method [spawn | fork]
 - It is default for UNIX(without MacOS) and also available UNIX only.
 - It looks more efficient but it should be considered unsafe(the reason why the macOS does not use fork as default).
 
-```
-$ python 02_spawn_and_fork.py -- method fork
+```bash
+$ python 02_spawn_and_fork.py --method fork
 The start method is fork
 Average execution time:    1.02497 sec  <- faster than spawn
 ```
@@ -51,7 +51,7 @@ Average execution time:    1.02497 sec  <- faster than spawn
 - It is default for Windows(There are no fork in Window).
 
 ```bash
-$ python 02_spawn_and_fork.py -- method spawn
+$ python 02_spawn_and_fork.py --method spawn
 The start method is spawn
 The start method is spawn
 The start method is spawn
