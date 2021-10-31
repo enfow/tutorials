@@ -5,12 +5,6 @@
 1. Compare single and multi process
 1. Start method: Spawn and Fork 
 
-## Setup
-
-```bash
-$ pip install -r requirements.txt
-```
-
 ## 1. compare single and multi process
 
 - compare execution time of single process and multi processes with multi tasks
