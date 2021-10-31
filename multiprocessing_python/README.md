@@ -42,7 +42,7 @@ $ python 02_spawn_and_fork.py -- method [spawn | fork]
 ```
 $ python 02_spawn_and_fork.py -- method fork
 The start method is fork
-Average execution time:    1.02497 sec
+Average execution time:    1.02497 sec  <- faster than spawn
 ```
 
 #### Spawn
@@ -65,7 +65,7 @@ The start method is spawn
 The start method is spawn
 The start method is spawn
 The start method is spawn
-Average execution time:    2.02362 sec
+Average execution time:    2.02362 sec  <- slower than fork
 ```
 
 - As you can see, all lines of the script runs many times with `spawn` option(line 25).
