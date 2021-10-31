@@ -2,7 +2,7 @@
 
 ## Contents
 
-- 1. compare single and multi process
+1. compare single and multi process
 
 ## Setup
 
