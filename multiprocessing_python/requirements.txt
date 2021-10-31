@@ -1,0 +1,5 @@
+# plot
+matplotlib == 3.4.3
+
+# format
+black == 21.9b0
