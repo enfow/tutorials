@@ -31,7 +31,14 @@ $ python 02_spawn_and_fork.py -- method [spawn | fork]
 
 ### Spawn and Fork
 
-- python multiprocessing has 3 process start method: spawn, fork and forkserve
+- Python MultiProcessing has 3 process start method: spawn, fork and forkserve
+- How to select the start method: `mp.set_start_method()`
+
+```python
+mp.set_start_method('spawn')
+```
+
+- `mp.set_start_method()` should net be used more than once in the program.
 
 #### Fork
 
@@ -96,16 +103,6 @@ Traceback (most recent call last):
     raise RuntimeError('context has already been set')
 RuntimeError: context has already been set
 ```
-
-### tips:
-
-- How to select the start method: `mp.set_start_method()`
-
-```python
-mp.set_start_method('spawn')
-```
-
-- `mp.set_start_method()` should net be used more than once in the program.
 
 ## References
 
