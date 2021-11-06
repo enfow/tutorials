@@ -17,6 +17,13 @@
 $ python 01_compare_single_and_multi.py --n_iters 1000 10000 --n_tasks 1 2 3 4
 ```
 
+### Results
+
+![task1](<./img/compare_single_and_multi/task_1.png>)
+![task8](<./img/compare_single_and_multi/task_8.png>)
+![iter500](<./img/compare_single_and_multi/iteration_500.png>)
+![iter5000](<./img/compare_single_and_multi/iteration_5000.png>)
+
 ## 2. start method: spawn and fork
 
 - compare process start method: spawn and fork
