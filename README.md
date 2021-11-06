@@ -19,3 +19,5 @@
 ### [8. Deep Learning Basic](<./deeplearning_basic>)
 
 ### [9.MultiProcessing Pyhton](<./multiprocessing_python>)
+
+### [10. Finance with Python](<./finance-with-python>)
