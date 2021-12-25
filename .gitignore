@@ -1,5 +1,7 @@
 .env
 
+ignores/
+
 __pycache__
 
 *.log
