@@ -49,6 +49,14 @@ To get the password for "postgres" run:
 $ helm status test-postgres
 ```
 
+- chart가 요구하는 config를 전달하여 release를 생성할 수도 있다.
+
+```
+$ helm install -f config.yaml test-postgres bitnami/postgresql
+```
+
+- config file의 field는 `$ helm show values [chart-name]` 으로 확인 가능하다.
+
 ### helm list
 
 - 생성된 release 객체들을 확인할 수 있는 명령어이다.  
@@ -76,3 +84,78 @@ NAME    NAMESPACE       REVISION        UPDATED STATUS  CHART   APP VERSION
 
 - 등록된 저장소를 확인하는 명령어는 `helm repo list` 이다.
 - 저장소를 등록하는 명령어는 `helm repo add [location]` 이다.
+
+### helm show
+
+- helm chart의 정보를 확인하기 위해 사용하는 명령어
+
+```
+$ helm show all [chart name]  # all information about chart
+$ helm show chart [chart name]   # chart's definition
+$ helm show crds [chart name]   # charts' CRDs
+$ helm show readme [chart name]   # chart's readme
+$ helm show values [chart name]   # chart's value
+```
+
+## 차트 생성하기
+
+### helm create
+
+- 새로운 차트를 생성해주는 명령어
+
+```
+$ helm create [new chart name]
+```
+
+- 입력한 이름의 디렉토리가 생성되며, 그 결과는 다음과 같다.
+
+```
+# $ tree ./[new chart name]
+[new chart name]
+├── Chart.yaml   # 차트 정의(이름, 버전 등)
+├── charts   # 차트에 종속되는 다른 차트들을 정의하는 곳
+├── templates   # 차트에 포함되는 k8s cluster object의 manifesto yaml을 정의하는 곳
+│   ├── NOTES.txt
+│   ├── _helpers.tpl
+│   ├── deployment.yaml
+│   ├── hpa.yaml
+│   ├── ingress.yaml
+│   ├── service.yaml
+│   ├── serviceaccount.yaml
+│   └── tests
+│       └── test-connection.yaml
+└── values.yaml
+```
+
+## 차트 검증하기
+
+### helm lint
+
+- 구현한 차트에 대해 정적 검사를 해주는 명령어
+
+```
+$ helm lint [chart path]
+```
+
+## 로컬 차트 실행하기
+
+- `helm install`의 대상으로는 다음 네 가지가 있다.
+
+1. 차트 저장소(e.g. helm hub)
+2. 압축 해제된 차트 디렉토리
+3. 로컬 차트 압축파일
+4. 완전한 URL
+
+- 즉 아래와 같이 helm chart를 정의한 directory를 바로 전달하는 것도 가능하다.
+
+```
+$ helm install [chart path]
+```
+
+### helm package [chart path]
+
+- 압축 파일로 만들어 관리할 수도 있는데, 압축 파일(.tgz)을 생성하는 명령어는 다음과 같다.
+
+```
+$ helm package [chart path]
+```
