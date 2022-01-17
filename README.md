@@ -23,3 +23,5 @@
 ### [10. Finance with Python](<./finance-with-python>)
 
 ### [11. CKA - Certified Kubernetes Administrator](<./cka>)
+
+### [11. Codes for Whisky](<./whisky>)
