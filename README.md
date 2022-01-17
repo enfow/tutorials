@@ -24,4 +24,4 @@
 
 ### [11. CKA - Certified Kubernetes Administrator](<./cka>)
 
-### [11. Codes for Whisky](<./whisky>)
+### [12. Codes for Whisky](<./whisky>)
