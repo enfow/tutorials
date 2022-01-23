@@ -94,7 +94,7 @@ const Layout = ({ pageTitle, children }) => {
 export default Layout
 ```
 
-- `iindex.js`에 layout을 추가해준다.
+- `index.js`에 layout을 추가해준다.
 
 ```
 # src/pages/index.js
@@ -114,6 +114,50 @@ export default IndexPage
 ```
 
 `<Layout>` 의 하위 요소들은 `{children}` 에서 rendering 된다.
+
+## Add styles
+
+```
+# src/components/layout.module.css
+
+.container {
+  margin: auto;
+  max-width: 500px;
+  font-family: sans-serif;
+}
+
+```
+
+- `layout.js`에 className을 추가해준다.
+
+```
+# src/components/layout.js
+
+import * as React from 'react'
+import { Link } from 'gatsby'
+
+import { container } from './layout.module.css'
+
+const Layout = ({ pageTitle, children }) => {
+  return (
+    <div className={container}>
+      <title>{pageTitle}</title>
+      <nav>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/about">About</Link></li>
+        </ul>
+      </nav>
+      <main>
+        <h1>{pageTitle}</h1>
+        {children}
+      </main>
+    </div>
+  )
+}
+
+export default Layout
+```
 
 ## Gatsby Components
 
