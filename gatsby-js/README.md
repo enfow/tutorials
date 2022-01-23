@@ -65,6 +65,56 @@ export default AboutPage
 
 - `localhost:8000/about`으로 접속하면 about page를 확인할 수 있다.
 
+## Create Layout
+
+```
+# src/components/layout.js
+
+import * as React from 'react'
+import { Link } from 'gatsby'
+
+const Layout = ({ pageTitle, children }) => {
+  return (
+    <div>
+      <title>{pageTitle}</title>
+      <nav>
+        <ul>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/about">About</Link></li>
+        </ul>
+      </nav>
+      <main>
+        <h1>{pageTitle}</h1>
+        {children}
+      </main>
+    </div>
+  )
+}
+
+export default Layout
+```
+
+- `iindex.js`에 layout을 추가해준다.
+
+```
+# src/pages/index.js
+
+import * as React from 'react'
+
+import Layout from '../components/layout'
+
+const IndexPage = () => {
+  return (
+    <Layout pageTitle="Home Page">
+      ...
+    </Layout>
+  )
+}
+export default IndexPage
+```
+
+`<Layout>` 의 하위 요소들은 `{children}` 에서 rendering 된다.
+
 ## Gatsby Components
 
 ### Link
