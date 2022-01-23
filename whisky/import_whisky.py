@@ -28,5 +28,5 @@ expected_tax = round(expected_price * TAX_RATE)
 expected_sum = expected_price + expected_delivery_fee + expected_tax
 
 print(
-    f"expected sum: ₩{expected_sum:,} | expected price: ₩{expected_price:,} | expected tax: ₩{expected_tax:,}"
+    f"expected sum: ₩{expected_sum:,} | expected price: ₩{expected_price:,} | expected delivery: ₩{expected_delivery_fee:,} | expected tax: ₩{expected_tax:,}"
 )
