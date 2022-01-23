@@ -65,6 +65,18 @@ export default AboutPage
 
 - `localhost:8000/about`으로 접속하면 about page를 확인할 수 있다.
 
+## Gatsby Components
+
+### Link
+
+- HyperLink를 생성해주는 컴포넌트
+
+```
+import { Link } from 'gatsby'
+
+<Link to="/"> Back to Home </Link>
+```
+
 ## References
 
 - [GatsbyJS Tutorial](<https://www.gatsbyjs.com/docs/tutorial/part-0/>)
