@@ -26,4 +26,4 @@
 
 ### [12. Codes for Whisky](<./whisky>)
 
-### [12. Gatsby-JS](<./gatsby-js>)
+### [13. GatsbyJS](<./gatsby-js>)
