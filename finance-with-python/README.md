@@ -6,4 +6,4 @@
 
 ## Dual Momentum Strategy with FinanceDataReader
 
-![dualmomentum](<./img/6M_yield_211107.png>)
+![dualmomentum](<./asset/6M_yield_211107.png>)
