@@ -11,7 +11,7 @@ import os
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 
-from credentials import SLACK_TOKEN
+from sender.credentials import SLACK_TOKEN
 
 
 class SlackMsgSender:
@@ -19,7 +19,7 @@ class SlackMsgSender:
     
     def __init__(self, channel_name: str) -> None:
         """initialize."""
-        self.client = WebClient(token=SLACK_TOKEN)
+        self.client = WebClient(token=SLACK_TOKEN["trade_bot"])
         self.channel_name = channel_name
         if channel_name[0] != "#":
             self.channel_name = "#" + self.channel_name
