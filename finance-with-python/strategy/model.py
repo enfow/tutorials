@@ -8,8 +8,7 @@ import FinanceDataReader as fdr
 import matplotlib.pyplot as plt
 import pandas as pd
 from typing import Dict
-# from datetime import datetime
-import datetime
+from datetime import datetime
 
 from sender.slack_sender import SlackMsgSender
 from data.data_loader import PriceData, DataLoader, DataPreprocessor
@@ -21,7 +20,6 @@ class StrategyModel:
     def __init__(self, save_dir: str, send_msg: bool = True):
         """Initialize."""
         self.today: datetime = pd.to_datetime("today")
-        # self.today: datetime = datetime.date.today()
         self.today_date = self.today.strftime('%y-%m-%d')
 
         self.dataloader = DataLoader()
