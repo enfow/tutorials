@@ -8,6 +8,7 @@ References:
 """
 
 import os
+
 from slack_sdk import WebClient
 from slack_sdk.errors import SlackApiError
 
@@ -16,7 +17,7 @@ from sender.credentials import SLACK_TOKEN
 
 class SlackMsgSender:
     """Slack message sender."""
-    
+
     def __init__(self, channel_name: str) -> None:
         """initialize."""
         self.client = WebClient(token=SLACK_TOKEN["trade_bot"])
@@ -31,5 +32,7 @@ class SlackMsgSender:
 
     def send_file(self, file_path: str) -> None:
         """send file slack msg."""
-        response = self.client.files_upload(channels=self.channel_name, file=file_path+".png")
+        response = self.client.files_upload(
+            channels=self.channel_name, file=file_path + ".png"
+        )
         assert response["file"]

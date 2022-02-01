@@ -4,14 +4,15 @@ Author: Kyeongmin Woo
 Email: wgm0601@gmail.com
 """
 import os
+from datetime import datetime
+from typing import Dict
+
 import FinanceDataReader as fdr
 import matplotlib.pyplot as plt
 import pandas as pd
-from typing import Dict
-from datetime import datetime
 
+from data.data_loader import DataLoader, DataPreprocessor, PriceData
 from sender.slack_sender import SlackMsgSender
-from data.data_loader import PriceData, DataLoader, DataPreprocessor
 
 
 class StrategyModel:
@@ -20,7 +21,7 @@ class StrategyModel:
     def __init__(self, save_dir: str, send_msg: bool = True):
         """Initialize."""
         self.today: datetime = pd.to_datetime("today")
-        self.today_date = self.today.strftime('%y-%m-%d')
+        self.today_date = self.today.strftime("%y-%m-%d")
 
         self.dataloader = DataLoader()
         self.preprocessors = DataPreprocessor()
@@ -35,7 +36,7 @@ class StrategyModel:
 
     def get_data(self) -> PriceData:
         """get data for the strategy.
-            
+
         Notes:
             - the format of the data should be Dict[str, pd.Series] (PriceData)
         """
@@ -63,12 +64,13 @@ class StrategyModel:
         if self.channel_name is None:
             raise ValueError("channel name is None")
 
-        sender =SlackMsgSender(channel_name = self.channel_name)
+        sender = SlackMsgSender(channel_name=self.channel_name)
         if text:
             sender.send_msg(text=text)
         if file_path:
             sender.send_file(file_path=file_path)
 
+
 if __name__ == "__main__":
-    strategy = StrategyModel(save_dir = "img")
+    strategy = StrategyModel(save_dir="img")
     strategy.report()
