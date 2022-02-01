@@ -15,7 +15,7 @@ from data.data_loader import DataLoader, DataPreprocessor, PriceData
 from sender.slack_sender import SlackMsgSender
 
 
-class StrategyModel:
+class ReportModel:
     """Strategy Model class."""
 
     def __init__(self, save_dir: str, send_msg: bool = True):

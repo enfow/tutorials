@@ -5,7 +5,7 @@ Email: wgm0601@gmail.com
 """
 import argparse
 
-from src.strategy.dual_momentum import DualMomentum
+from src.reporter.dual_momentum import DualMomentum
 
 
 parser = argparse.ArgumentParser()

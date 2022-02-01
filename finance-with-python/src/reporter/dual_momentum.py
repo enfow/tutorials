@@ -13,7 +13,7 @@ import pandas as pd
 
 from data.data_loader import DataLoader, DataPreprocessor, PriceData, Tikkers
 from sender.slack_sender import SlackMsgSender
-from strategy.model import StrategyModel
+from reporter.model import ReportModel
 
 # Constant
 TIKKERS: Tikkers = {
@@ -26,7 +26,7 @@ START_YEAR = 2021
 DEPOSIT_RATE = 1.008
 
 
-class DualMomentum(StrategyModel):
+class DualMomentum(ReportModel):
     """Dual Momentum Strategy class."""
 
     def __init__(self, save_dir: str, send_msg: bool = True):
