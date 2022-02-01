@@ -33,8 +33,6 @@ class DualMomentum(ReportModel):
         """Initialize."""
         self.channel_name = "#dual_momentum"
         self.n_days: int = 180
-        print(send_msg)
-        print(type(send_msg))
         StrategyModel.__init__(self, save_dir, send_msg)
 
     def get_data(self) -> PriceData:
