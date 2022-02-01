@@ -8,3 +8,9 @@ slack-sdk == 3.11.2
 # visualize
 matplotlib == 3.4.3
 jupyterlab == 3.2.2
+
+# format
+black == 22.1.0 
+isort == 5.10.1
+
+
