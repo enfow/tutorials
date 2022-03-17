@@ -19,7 +19,8 @@ class SlackMsgSender:
     
     def __init__(self, channel_name: str) -> None:
         """initialize."""
-        self.client = WebClient(token=SLACK_TOKEN)
+        token = SLACK_TOKEN["trade_bot"]
+        self.client = WebClient(token=token)
         self.channel_name = channel_name
         if channel_name[0] != "#":
             self.channel_name = "#" + self.channel_name

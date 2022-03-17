@@ -94,7 +94,7 @@ class DualMomentum:
 
     def send_msg(self, text: str, file_path: str) -> None:
         """send slack msg."""
-        sender =SlackMsgSender(channel_name = "#dual_momentum")
+        sender = SlackMsgSender(channel_name = "#dual_momentum")
         if text:
             sender.send_msg(text=text)
         if file_path:
