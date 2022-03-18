@@ -18,7 +18,7 @@
 
 ### [8. Deep Learning Basic](<./deeplearning_basic>)
 
-### [9.MultiProcessing Pyhton](<./multiprocessing_python>)
+### [9. MultiProcessing/MultiThreading/AsyncIO Pyhton](<./multi-processisng-threading-async>)
 
 ### [10. Finance with Python](<./finance-with-python>)
 
