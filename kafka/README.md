@@ -172,6 +172,7 @@ CreateTime:1647783303931        a       d
 
 ```
 [without group]
+
 ==PRODUCER=====================================================================
 $ kafka-console-producer --bootstrap-server localhost:9092 --topic first-topic --property parse.key=true --property key.separator=:
 >without:group
@@ -225,4 +226,60 @@ $ kafka-console-consumer --bootstrap-server localhost:9092 --topic first-topic -
 kafka-console-consumer --bootstrap-server localhost:9092 --topic first-topic --property print.key=true --property print.value=true --group first-group
 
 seventh msg
+```
+
+### kafka-consumer-groups
+
+```
+# get list of consumer groups
+kafka-consumer-groups --bootstrap-server localhost:9092 --list
+
+# describe consumer group
+kafka-consumer-groups --bootstrap-server localhost:9092 --describe --group [GROUP NAME]
+
+# reset offset
+kafka-consumer-groups \
+    --bootstrap-server localhost:9092 \
+    --group [GROUP NAME] \
+    --topic [TOPIC NAME] \
+    --reset-offsets \
+    --to-earlist \
+    --execute \ # execute to reset offsets to the earliest number
+
+# shift offset
+kafka-consumer-groups \
+    --bootstrap-server localhost:9092 \
+    --group [GROUP NAME] \
+    --topic [TOPIC NAME] \
+    --reset-offsets \
+    --shift-by 2 \
+    --execute \ # execute to shift offsets by 2
+```
+
+#### example
+
+```
+# --list
+$ kafka-consumer-groups --bootstrap-server localhost:9092 --list
+first-group
+
+# --describe
+$ kafka-consumer-groups --bootstrap-server localhost:9092 --describe --group first-group
+Consumer group 'first-group' has no active members.
+
+GROUP           TOPIC           PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID     HOST            CLIENT-ID
+first-group     first-topic     0          12              12              0               -               -               -
+first-group     first-topic     1          5               5               0               -               -               -
+first-group     first-topic     2          3               3               0               -               -               -
+```
+- offset을 -2만큼 이동시키기
+  - offset이 이전으로 2칸씩 이동하게 된다. 
+
+```
+# shift -2
+$ kafka-consumer-groups --bootstrap-server localhost:9092 --group first-group --topic first-topic --reset-offsets --shift-by -2 --execute
+GROUP                          TOPIC                          PARTITION  NEW-OFFSET
+first-group                    first-topic                    0          10
+first-group                    first-topic                    1          3
+first-group                    first-topic                    2          1
 ```
