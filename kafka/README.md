@@ -252,8 +252,8 @@ kafka-consumer-groups \
     --group [GROUP NAME] \
     --topic [TOPIC NAME] \
     --reset-offsets \
-    --shift-by 2 \
-    --execute \ # execute to shift offsets by 2
+    --shift-by -2 \
+    --execute \ # execute to shift offsets by -2
 ```
 
 #### example
@@ -273,7 +273,7 @@ first-group     first-topic     1          5               5               0    
 first-group     first-topic     2          3               3               0               -               -               -
 ```
 - offset을 -2만큼 이동시키기
-  - offset이 이전으로 2칸씩 이동하게 된다. 
+  - offset이 -2씩 이동하게 된다. 
 
 ```
 # shift -2
