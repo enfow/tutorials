@@ -38,10 +38,19 @@ def sync_sleep(sec: int = 3) -> None:
     """Run double for iteration."""
     time.sleep(sec)
 
+# task
+def double_for_iteration(n: int = 100) -> None:
+    """Run double for iteration."""
+    for _ in range(n):
+        for _ in range(n):
+            pass
+
 
 async def main():
 
     results: RESULTS = dict()
+
+    # multi threading
     for n_task in N_TASKS:
 
         result_table: Dict[str, List[EXEC_TIME]] = {
@@ -51,7 +60,6 @@ async def main():
 
         for sec in SECS:
 
-            # multi threading
             start_time = time.time()
 
             task_set = [
@@ -66,7 +74,11 @@ async def main():
 
             result_table["async"].append(end_time - start_time)
 
-            # single threading
+        results[n_task] = result_table
+
+    # single threading
+    for n_task in N_TASKS:
+        for sec in SECS:
             start_time = time.time()
 
             for task in range(n_task):
@@ -74,9 +86,7 @@ async def main():
 
             end_time = time.time()
 
-            result_table["sync"].append(end_time - start_time)
-
-        results[n_task] = result_table
+            results[n_task]["sync"].append(end_time - start_time)
 
     return results
 
