@@ -45,12 +45,23 @@ class DualMomentum:
 
     def report(self):
         """analyze."""
-        yields= {name : self.data[name][-1] for name in self.data}
+        earning_rate = {name : self.get_earning_rate_from_multiple(self.data[name][-1]) for name in self.data}
         file_path = self.save_plot()
         msg = f"Momentum 분석: {self.today_date}\n"
-        for name, y in yields.items():
+        for name, y in earning_rate.items():
             msg += f"{name} : {round(y, 3)}%\n"
         self.send_msg(msg, file_path)
+
+    def get_earning_rate_from_multiple(self, multiple: float):
+        """get earning rate.
+    
+        Example: 
+            - x1.065 -> 6.5%
+            - x0.982 -> -1.8%
+        """
+        earning_rate = (multiple * 100) - 100
+        return earning_rate
+        
 
     def get_opening_price(self) -> Dict[Name, OpeningPrice]:
         """get data with tikker."""
