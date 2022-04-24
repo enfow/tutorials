@@ -15,7 +15,6 @@ lint:
 ## Use constant value
 
 ```Makefile
-# ./Makefile
 # docker/Makefile
 IMAGE_NAME = hello-world-python
 
@@ -28,8 +27,8 @@ docker-run:
 
 ## Pass input parameter to make command
 
-```
-# ./Makefilw
+```Makefile
+# ./Makefile
 TXT = "Default Message"
 
 print-text:
