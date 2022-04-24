@@ -2,7 +2,7 @@
 
 ## make `something`
 
-```
+```Makefile
 # ./Makefile
 format:
 	black src/
