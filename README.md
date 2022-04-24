@@ -14,16 +14,10 @@
 
 ### [6. Python Web Framework: Flask](<./flask>)
 
-### [7. Python Examples](<./python>)
+### [7. MultiProcessing/MultiThreading/AsyncIO Pyhton](<./multi-processisng-threading-async>)
 
-### [8. Deep Learning Basic](<./deeplearning_basic>)
+### [8. Finance with Python](<./finance-with-python>)
 
-### [9. MultiProcessing/MultiThreading/AsyncIO Pyhton](<./multi-processisng-threading-async>)
+### [9. Kafka](<./kafka>)
 
-### [10. Finance with Python](<./finance-with-python>)
-
-### [11. CKA - Certified Kubernetes Administrator](<./cka>)
-
-### [12. Codes for Whisky](<./whisky>)
-
-### [13. GatsbyJS](<./gatsby-js>)
+### [10. GatsbyJS](<./gatsby-js>)

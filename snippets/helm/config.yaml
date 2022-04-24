@@ -1,0 +1,5 @@
+global:
+  postgresql:
+    postgresqlDatabase: 'mydb'
+    postgresqlUsername: 'user1'
+    postgresqlPassword: 'user1'
