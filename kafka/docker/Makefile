@@ -8,8 +8,11 @@ docker-run:
 docker-down:
 	docker compose down
 
-topic-list:
+list-topic:
 	kafka-topics --bootstrap-server localhost:9092 --list
+
+create-topic:
+	kafka-topics --bootstrap-server localhost:9092 --create --topic ${TOPIC}
 
 # e.g. $ make producer TOPIC=stream-serving-in 
 producer:
