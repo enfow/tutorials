@@ -14,7 +14,8 @@ lint:
 
 ## Use constant value
 
-```
+```Makefile
+# ./Makefile
 # docker/Makefile
 IMAGE_NAME = hello-world-python
 
@@ -37,7 +38,7 @@ print-text:
 
 - Input을 전달하지 않는 경우 -> Constant 출력
 
-```
+```bash
 $ make print-txt
 python src/print_input.py --txt "Default Message"
 Default Message
@@ -45,7 +46,7 @@ Default Message
 
 - Input을 전달한 경우 -> Input 출력
 
-```
+```bash
 $ make print-text TXT="NoDefault"
 python src/print_input.py --txt NoDefault
 NoDefault
@@ -56,11 +57,11 @@ NoDefault
 
 - 다음과 같이 `-C` option을 사용하면 다른 directory의 Makefile 커맨드를 실행할 수 있다.
 
-```
+```Makefile
 make -C [Makefile_Dir] [Makefile_keyword]
 ```
 
-```
+```Makefile
 ./Makefile
 docker-build-on-docker-dir:
 	make -C docker docker-build
