@@ -1,25 +1,36 @@
 """Define batabase model for university example.
 
 Notes:
-    - all `id`s are integer.
+    - all column with surfix `id` are integer.
+    - all column with surfix `name` are string.
 """
 
-from sqlalchemy import Column, Integer, String, Date, Time
-from sqlalchemy.orm import declarative_base
-from sqlalchemy.schema import PrimaryKeyConstraint
+from sqlalchemy import Column, Date, ForeignKey, Integer, String, Table, Time
+from sqlalchemy.orm import declarative_base, relationship
+from sqlalchemy.schema import (ForeignKeyConstraint, PrimaryKeyConstraint,
+                               UniqueConstraint)
 
 Base = declarative_base()
 
 
 class Student(Base):
-    """Model for student table."""
+    """Model for student table.
+
+    Notes:
+        - ForeignKey([table_name].[column_name])
+        - relationship([ClassName], backref=[table_name])
+    """
 
     __tablename__ = "student"
 
     id = Column(Integer, primary_key=True)
     name = Column(String(36))
-    dept_name = Column(String(36))
+    dept_name = Column(String(36), ForeignKey("department.dept_name"))
     tot_cred = Column(Integer)
+
+    # relationship
+    takes = relationship("Takes", backref="student")
+    takes = relationship("Advisor", backref="student")
 
 
 class Department(Base):
@@ -31,6 +42,11 @@ class Department(Base):
     building = Column(String(36))
     budget = Column(Integer)
 
+    # relationship
+    student = relationship("Student", backref="department")
+    course = relationship("Course", backref="department")
+    instructor = relationship("Instructor", backref="department")
+
 
 class Instructor(Base):
     """Model for instructor table."""
@@ -39,8 +55,12 @@ class Instructor(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String(36))
-    dept_name = Column(String(36))
+    dept_name = Column(String(36), ForeignKey("department.dept_name"))
     salary = Column(Integer)
+
+    # relationship
+    advisor = relationship("Advisor", backref="instructor")
+    teaches = relationship("Teaches", backref="instructor")
 
 
 class Advisor(Base):
@@ -53,8 +73,10 @@ class Advisor(Base):
 
     __tablename__ = "advisor"
 
-    s_id = Column(Integer, primary_key=True)  # student id
-    i_id = Column(Integer, primary_key=True)  # instructor id
+    s_id = Column(Integer, ForeignKey("student.id"), primary_key=True)  # student id
+    i_id = Column(
+        Integer, ForeignKey("instructor.id"), primary_key=True
+    )  # instructor id
 
 
 class Takes(Base):
@@ -66,7 +88,7 @@ class Takes(Base):
 
     __tablename__ = "takes"
 
-    id = Column(Integer)
+    id = Column(Integer, ForeignKey("student.id"))
     course_id = Column(Integer)
     sec_id = Column(Integer)
     semester = Column(String(8))
@@ -76,7 +98,10 @@ class Takes(Base):
     # Add primary key constraint directly
     __table_args__ = (
         PrimaryKeyConstraint(id, course_id, sec_id, semester, year),
-        {},
+        ForeignKeyConstraint(
+            ["course_id", "sec_id", "semester", "year"],
+            ["section.course_id", "section.sec_id", "section.semester", "section.year"],
+        ),
     )
 
 
@@ -91,7 +116,32 @@ class Section(Base):
     year = Column(Integer, primary_key=True)
     building = Column(String(32))
     room_no = Column(Integer)
-    time_solot_id = Column(Integer)
+    time_slot_id = Column(Integer, ForeignKey("time_slot.time_slot_id"))
+
+    # relationship
+    takes = relationship("Takes", backref="section")
+    teaches = relationship("Teaches", backref="section")
+
+    # add unique constraint(ForeignKey)
+    __table_args__ = (
+        ForeignKeyConstraint(
+            ["building", "room_no"], ["classroom.building", "classroom.room_no"]
+        ),
+        UniqueConstraint(building, room_no),
+    )
+
+
+class TimeSlot(Base):
+    """Model for time_slot table."""
+
+    __tablename__ = "time_slot"
+
+    time_slot_id = Column(Integer, unique=True, primary_key=True)
+    day = Column(Date, primary_key=True)
+    start_time = Column(Time, primary_key=True)
+    end_time = Column(Time)
+
+    section = relationship("Section", backref="tiem_slot")
 
 
 class Teaches(Base):
@@ -99,11 +149,19 @@ class Teaches(Base):
 
     __tablename__ = "teaches"
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, ForeignKey("instructor.id"), primary_key=True)
     course_id = Column(Integer, primary_key=True)
     sec_id = Column(Integer, primary_key=True)
     semester = Column(String(8), primary_key=True)
     year = Column(Integer, primary_key=True)
+
+    # add unique constraint(ForeignKey)
+    __table_args__ = (
+        ForeignKeyConstraint(
+            ["course_id", "sec_id", "semester", "year"],
+            ["section.course_id", "section.sec_id", "section.semester", "section.year"],
+        ),
+    )
 
 
 class ClassRoom(Base):
@@ -115,16 +173,7 @@ class ClassRoom(Base):
     room_no = Column(Integer, primary_key=True)
     capacity = Column(Integer)
 
-
-class TimeSlot(Base):
-    """Model for timeslot table."""
-
-    __tablename__ = "timeslot"
-
-    time_solot_id = Column(Integer, primary_key=True)
-    day = Column(Date, primary_key=True)
-    start_time = Column(Time, primary_key=True)
-    end_time = Column(Time)
+    section = relationship("Section", backref="classroom")
 
 
 class Course(Base):
@@ -134,8 +183,11 @@ class Course(Base):
 
     course_id = Column(Integer, primary_key=True)
     title = Column(String)
-    dept_name = Column(String(36))
+    dept_name = Column(String(36), ForeignKey("department.dept_name"))
     credits = Column(Integer)
+
+    # relationship
+    prereq = relationship("Prereq", backref="course")
 
 
 class Prereq(Base):
@@ -143,5 +195,5 @@ class Prereq(Base):
 
     __tablename__ = "prereq"
 
-    course_id = Column(Integer, primary_key=True)
-    prereq_id = Column(Integer, primary_key=True)
+    course_id = Column(Integer, ForeignKey("course.course_id"), primary_key=True)
+    prereq_id = Column(Integer, ForeignKey("course.course_id"), primary_key=True)
