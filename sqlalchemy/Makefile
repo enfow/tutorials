@@ -13,3 +13,6 @@ restart-postgres:
 	make clean-up
 	make run-postgres
 
+format:
+	black .
+	isort .
