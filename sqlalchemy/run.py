@@ -1,5 +1,5 @@
 import sqlalchemy
-from sqlalchemy import create_engine, text, Column, Integer, String
+from sqlalchemy import Column, Integer, String, create_engine, text
 from sqlalchemy.orm import Session, declarative_base, sessionmaker
 
 
@@ -21,12 +21,10 @@ engine = create_engine(URL)
 table_name = "test_table"
 with engine.connect() as conn:
     if not table_exist(engine, table_name):
-        conn.execute(
-            text(f"CREATE TABLE {table_name} (x int, y int)")
-        )
+        conn.execute(text(f"CREATE TABLE {table_name} (x int, y int)"))
     conn.execute(
         text(f"INSERT INTO {table_name} (x, y) VALUES (:x, :y)"),
-        [{"x": 1, "y": 1}, {"x": 2, "y": 2}]
+        [{"x": 1, "y": 1}, {"x": 2, "y": 2}],
     )
 
 
@@ -34,7 +32,7 @@ with engine.connect() as conn:
 with Session(engine) as session:
     session.execute(
         text(f"INSERT INTO {table_name} (x, y) VALUES (:x, :y)"),
-        [{"x": 3, "y": 3}, {"x": 4, "y": 4}]
+        [{"x": 3, "y": 3}, {"x": 4, "y": 4}],
     )
     session.commit()
 
@@ -45,6 +43,7 @@ Base = declarative_base()
 
 class User(Base):
     """User ORM-Mappled Class."""
+
     __tablename__ = "users"
 
     id = Column(Integer, primary_key=True)
