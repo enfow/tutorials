@@ -2,21 +2,30 @@ import sqlalchemy
 from sqlalchemy import create_engine, text, Column, Integer, String
 from sqlalchemy.orm import Session, declarative_base, sessionmaker
 
+
+def table_exist(engine: sqlalchemy.engine.Engine, table_name: str) -> bool:
+    """check table exsists on the database."""
+    return sqlalchemy.inspect(engine).has_table(table_name)
+
+
 # Database URLs: https://docs.sqlalchemy.org/en/14/core/engines.html#database-urls
 # [DIALECT]+[DRIVER]://[ID]:[PW]@[HOST]:[PORT]/[DATABASE]
 URL = "postgresql+psycopg2://postgres:1234@localhost:5432/postgres"
+
 
 # Create Engine
 engine = create_engine(URL)
 
 
 # Create TABLE `test_table` with Connection
+table_name = "test_table"
 with engine.connect() as conn:
+    if not table_exist(engine, table_name):
+        conn.execute(
+            text(f"CREATE TABLE {table_name} (x int, y int)")
+        )
     conn.execute(
-        text("CREATE TABLE test_table (x int, y int)")
-    )
-    conn.execute(
-        text("INSERT INTO test_table (x, y) VALUES (:x, :y)"),
+        text(f"INSERT INTO {table_name} (x, y) VALUES (:x, :y)"),
         [{"x": 1, "y": 1}, {"x": 2, "y": 2}]
     )
 
@@ -24,7 +33,7 @@ with engine.connect() as conn:
 # Insert new row with Session
 with Session(engine) as session:
     session.execute(
-        text("INSERT INTO test_table (x, y) VALUES (:x, :y)"),
+        text(f"INSERT INTO {table_name} (x, y) VALUES (:x, :y)"),
         [{"x": 3, "y": 3}, {"x": 4, "y": 4}]
     )
     session.commit()
