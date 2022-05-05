@@ -30,7 +30,7 @@ class Student(Base):
 
     # relationship
     takes = relationship("Takes", backref="student")
-    takes = relationship("Advisor", backref="student")
+    advisor = relationship("Advisor", backref="student")
 
 
 class Department(Base):
@@ -43,9 +43,15 @@ class Department(Base):
     budget = Column(Integer)
 
     # relationship
-    student = relationship("Student", backref="department")
-    course = relationship("Course", backref="department")
-    instructor = relationship("Instructor", backref="department")
+    student = relationship(
+        "Student",
+        backref="department",
+        foreign_keys=["student.dept_name"]
+    )
+    # course = relationship("Course", backref="department")
+    course = relationship("Course", foreign_keys=["course.dept_name"])
+    # instructor = relationship("Instructor", backref="department")
+    instructor = relationship("Instructor", foreign_keys=["instructor.dept_name"])
 
 
 class Instructor(Base):
