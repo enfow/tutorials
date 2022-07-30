@@ -2,6 +2,7 @@
 #          Local            #
 #############################
 CELERY_QUEUE=celery-worker
+DB_NAME=postgres
 
 run-rabbitmq:
 	docker run --network host -d --rm --name rabbitmq rabbitmq
@@ -14,6 +15,9 @@ run-worker:
 
 run-app:
 	QUEUE=$(CELERY_QUEUE) python app/app/run.py
+
+attach-postgres:
+	docker exec -it postgres bash -c "psql -U postgres postgres"
 
 kill-rabbitmq:
 	docker kill rabbitmq
