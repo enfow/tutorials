@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  labels:
+    app: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+      - name: app
+        image: app
+        imagePullPolicy: Never
+        env:
+        - name: CELERY_BROKER_URL
+          value: "amqp://guest:guest@rabbitmq-service:5672"
+        - name: CELERY_RESULT_BACKEND
+          value: "rpc://"
