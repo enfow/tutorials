@@ -4,21 +4,38 @@ import psycopg2
 from psycopg2 import OperationalError
 
 
+def postgres_url_parser(
+    pg_url: str
+):
+    user_info, host_db_info = pg_url.split("@")
+    user, passwd = user_info.split(":")
+    host_info, database = host_db_info.split("/")
+    host, port = host_info.split(":")
+
+    return {
+        "user": user,
+        "password": passwd,
+        "host": host,
+        "port": port,
+        "database": database,
+    }
+
+
 def create_connection(
-    db_name="postgres",
-    db_user="postgres",
-    db_password="1234",
-    db_host="localhost",
-    db_port="5432"
+    database="postgres",
+    user="postgres",
+    password="1234",
+    host="localhost",
+    port="5432"
 ):
     connection = None
     try:
         connection = psycopg2.connect(
-            database=db_name,
-            user=db_user,
-            password=db_password,
-            host=db_host,
-            port=db_port,
+            database=database,
+            user=user,
+            password=password,
+            host=host,
+            port=port,
         )
         print("Connection to PostgreSQL DB successful")
     except OperationalError as e:

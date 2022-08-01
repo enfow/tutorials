@@ -3,6 +3,7 @@ import time
 import celery
 
 from common_task.tasks import add, sleep_three
+from db import *
 
 
 CELERY_RESULT_BACKEND = os.getenv(
@@ -17,13 +18,17 @@ QUEUE = os.getenv(
     "QUEUE",
     "celery-worker"  # for local
 )
+POSTGRES_URL = os.getenv(
+    "POSTGRES_URL",
+    "postgres:1234@localhost:5432/postgres"
+)
 
-print("###############################")
-print("BROKER_URL: ", CELERY_BROKER_URL)
-print("QUEUE: ", QUEUE)
-print("BACKEND: ", CELERY_RESULT_BACKEND)
-print("###############################")
-print()
+print("########################################")
+print("CELERY BROKER_URL: ", CELERY_BROKER_URL)
+print("TASK QUEUE NAME: ", QUEUE)
+print("CELERY BACKEND: ", CELERY_RESULT_BACKEND)
+print("POSTGRES_URL: ", POSTGRES_URL)
+print("########################################")
 
 app = celery.Celery(
     "celery-app-name",
@@ -41,6 +46,12 @@ def add_wrapper(x, y):
 
 if __name__ == "__main__":
     print("START")
+
+    pg_conn_info = postgres_url_parser(pg_url=POSTGRES_URL)
+    conn = create_connection(
+        # **pg_conn_info
+    )
+
     while True:
         for count in range(1,4):  # count 3
             time.sleep(1)

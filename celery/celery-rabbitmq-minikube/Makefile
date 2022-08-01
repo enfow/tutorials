@@ -8,7 +8,7 @@ run-rabbitmq:
 	docker run --network host -d --rm --name rabbitmq rabbitmq
 
 run-postgres:
-	docker run -d -p 5432:5432 --name ${DB_NAME} -e POSTGRES_PASSWORD=1234 --rm postgres
+	docker run -d --network host -p 5432:5432 --name ${DB_NAME} -e POSTGRES_PASSWORD=1234 postgres
 
 run-worker:
 	QUEUE=$(CELERY_QUEUE) python celery-worker/run.py
