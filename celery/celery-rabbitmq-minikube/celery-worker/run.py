@@ -40,8 +40,7 @@ if __name__ == "__main__":
     app.autodiscover_tasks(packages=['common_task'])
 
     worker = app.Worker(
-        # include=["common_task.tasks"],
-        # include=["common_task"],
+        include=["common_task"],
         loglevel="INFO",
         queues=QUEUE
     )

@@ -37,20 +37,23 @@ app = celery.Celery(
     include=["common_task"]
 )
 
+
 def add_wrapper(x, y):
     return add.apply_async(
         args=[x, y],
         queue=QUEUE,
-        ignore_result=True,  # never wait result
+        # ignore_result=True,  # never wait result
     )
+
 
 if __name__ == "__main__":
     print("START")
 
     pg_conn_info = postgres_url_parser(pg_url=POSTGRES_URL)
     conn = create_connection(
-        # **pg_conn_info
+        **pg_conn_info
     )
+    create_table_logs(conn)
 
     while True:
         for count in range(1,4):  # count 3
@@ -59,3 +62,4 @@ if __name__ == "__main__":
         print("BAMMM💣💣💣💣💣")
         result = add_wrapper(1,2)
         print("RESULT: ", result.get())
+        # insert_to_logs(conn, log=)

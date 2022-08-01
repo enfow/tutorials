@@ -6,7 +6,10 @@ import celery
 @celery.shared_task(name="add")
 def add(x, y):
     result = x + y
-    return result
+    return {
+        "result": result,
+        "worker": os.getpid()
+    }
 
 
 @celery.shared_task(name="sleep_three")
