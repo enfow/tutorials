@@ -1,6 +1,7 @@
 import os
 import time
 import celery
+import pika
 
 from common_task.tasks import add, sleep_three
 from db import *
@@ -8,6 +9,7 @@ from db import *
 
 CELERY_RESULT_BACKEND = os.getenv(
     "CELERY_RESULT_BACKEND",
+    # "amqp://guest:guest@localhost:5672"  # for local
     "rpc://"
 )
 CELERY_BROKER_URL = os.getenv(
@@ -60,6 +62,10 @@ if __name__ == "__main__":
             time.sleep(1)
             print(count)
         print("BAMMM💣💣💣💣💣")
-        result = add_wrapper(1,2)
-        print("RESULT: ", result.get())
-        # insert_to_logs(conn, log=)
+
+        # [ignore_result = False]
+        result_not_ready = add_wrapper(1,2)
+        result = result_not_ready.get()
+        print("RESULT: ", result)
+
+        insert_to_logs(conn, log=(result["worker"], result["result"]))

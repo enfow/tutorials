@@ -53,7 +53,7 @@ def execute_query(connection, query):
         print(f"The error '{e}' occurred")
 
 
-def create_table_logs(conneciton):
+def create_table_logs(connection):
     """cretae table logs.
 
     Notes:
@@ -68,7 +68,7 @@ def create_table_logs(conneciton):
       result TEXT
     )
     """
-    execute_query(conn, table_query)  # Query executed successfully
+    execute_query(connection, table_query)  # Query executed successfully
 
 
 def insert_to_logs(connection, log: tuple):
